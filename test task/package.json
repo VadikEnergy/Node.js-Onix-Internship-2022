@@ -1,0 +1,21 @@
+{
+  "name": "mytestapp",
+  "version": "1.0.0",
+  "description": "app that will return current USD rate for cryptocurrency provides as 'parameter'",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "node",
+    "server",
+    "route",
+    "parameter"
+  ],
+  "author": "Vadym Vorobei",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.1",
+    "request": "^2.88.2"
+  }
+}
