@@ -1,12 +1,12 @@
 const myArray = [1, 10, 3, 6, 'ArrayElement'];
 
 /**
- * 1. Log to console 3 and '{}'
+ * 1. Log 3 and 6 elements from myArray to console
  * Please, use more than on solution
  */
 
-console.log(`3: ${myArray[2]}`, myArray[2]);
-console.log(`{}: ${'{}'}`, '{}');
+console.log(`3: ${myArray.at(2)}`);
+console.log(`6: ${myArray.at(3)}`);
 
 /**
  *  2. Log type of each element
@@ -54,7 +54,7 @@ console.log({
  * Should return another Array
  */
 
-const multiplied = myArray.map( elem => elem * 2);
+const multiplied = myArray.filter( el => Boolean(el) === Number.isInteger(el) ).map( elem => elem * 2);
 
 console.log({
     multiplied,
@@ -64,7 +64,7 @@ console.log({
  * 7. Calculate array sum
  */
 
-const sum = myArray.reduce( (numFirst, numSecond) => numFirst + numSecond);
+const sum = myArray.filter( el => Boolean(el) === Number.isInteger(el) ).reduce( (numFirst, numSecond) => numFirst + numSecond);
 
 console.log({
     sum,
@@ -81,3 +81,4 @@ console.log({
     asc,
     desc,
 });
+

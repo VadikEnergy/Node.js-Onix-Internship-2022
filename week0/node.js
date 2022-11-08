@@ -26,34 +26,36 @@
 
 require('dotenv').config();
 
-param = process.env.ENV;
+getJsonFile(process.env.ENV);
 
-if (param === 'PRODUCTION') {
+function getJsonFile(param) {
 
-  request('https://jsonplaceholder.typicode.com/todos', { json: true }, (err, res, body) => {
+  if (param === 'PRODUCTION') {
 
-   if (err) { return console.log(err); }
-   fs.writeFile("todos.json", JSON.stringify(body), err => {
+    request('https://jsonplaceholder.typicode.com/todos', { json: true }, (err, res, body) => {
+  
+     if (err) { return console.log(err); }
+     fs.writeFile("todos.json", JSON.stringify(body), err => {
+  
+      if (err) { return console.log(err); }
+      console.log("New file 'todos.json' successfully done writing"); // Success
+    });
+  
+   });
+  } else if (param === 'DEV') {
+  
+    request('https://jsonplaceholder.typicode.com/albums', { json: true }, (err, res, body) => {
+  
+     if (err) { return console.log(err); }
+     fs.writeFile("albums.json", JSON.stringify(body), err => {
+  
+      if (err) { return console.log(err); }
+      console.log("New file 'albums.json' successfully done writing"); // Success
+    });
+  
+   });
+  } else {
+    console.log(' The new param is not a PRODUCTION or DEV ');
+  }
 
-    if (err) { return console.log(err); }
-    console.log("New file 'todos.json' successfully done writing"); // Success
-  });
-
- });
-}
-else if (param === 'DEV') {
-
-  request('https://jsonplaceholder.typicode.com/albums', { json: true }, (err, res, body) => {
-
-   if (err) { return console.log(err); }
-   fs.writeFile("albums.json", JSON.stringify(body), err => {
-
-    if (err) { return console.log(err); }
-    console.log("New file 'albums.json' successfully done writing"); // Success
-  });
-
- });
-}
-else {
-  console.log(' The new param is not a PRODUCTION or DEV ');
 }
