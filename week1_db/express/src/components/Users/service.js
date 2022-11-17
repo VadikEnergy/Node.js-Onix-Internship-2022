@@ -1,17 +1,4 @@
-const mongoose = require('mongoose');
-const User = require('../../models/User');
-
-mongoose.connect('mongodb://localhost:27017/users', {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-        })
-        .then(() => console.log("Database connected!"))
-        .catch(err => console.log(err));
-
-/**
- *  Leave create service method for future, when we will connect mongo,
- *  we will do manipulations here
- */
+const User = require('./User');
 
 function findUser(ID) {
     const user = User.findById(ID);
