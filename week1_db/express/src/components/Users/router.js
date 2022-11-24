@@ -1,14 +1,21 @@
 const { Router } = require('express');
 const UserComponent = require('./index');
+const UserValid = require('./validation');
+const Validation = require('../../config/validationMiddleware');
+const ValidationToken = require('../../config/validTokenMiddleware');
 
 const router = Router();
 
-router.get('/:userID', UserComponent.findUser);
+router.get('/user/:userID', UserComponent.findUser);
 
-router.post('/', UserComponent.createUser);
+router.post('/user', Validation(UserValid.validCreateUser), UserComponent.createUser);
 
-router.put('/:userID', UserComponent.updateUser);
+router.put('/user/:userID', UserComponent.updateUser);
 
-router.delete('/:userID', UserComponent.deleteUser);
+router.delete('/user/:userID', UserComponent.deleteUser);
+
+router.post('/sign-in', Validation(UserValid.validSignIn), UserComponent.authorizationUser);
+
+router.post('/account', ValidationToken, UserComponent.accountUser);
 
 module.exports = router;

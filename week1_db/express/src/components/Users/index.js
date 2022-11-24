@@ -9,11 +9,10 @@ async function findUser(req, res) {
         });
 
     } catch (err) {
-        return res.status(400).json({
-            error: 'User not found',
-            details: 'You have entered an incorrect ID',
-            solution: 'Please enter a valid ID',
-            });
+        return res.status(500).json({
+            error: err.message,
+            details: null,
+        });
     }
 }
 
@@ -61,9 +60,42 @@ async function deleteUser(req, res) {
     }
 }
 
+async function accountUser(req, res) {
+    try {
+        const user = await UserService.accountUser(req.body);
+
+        return res.status(201).json({
+            data: user,
+        });
+    } catch (err) {
+        return res.status(500).json({
+            error: err.message,
+            details: null,
+        });
+    }
+}
+
+async function authorizationUser(req, res) {
+    try {
+        const user = await UserService.authorizationUser(req.body);
+        
+        return res.status(201).json({
+            data: user,
+        });
+    } catch (err) {
+        return res.status(500).json({
+            error: err.message,
+            details: null,
+        });
+    }
+}
+
+
 module.exports = {
     findUser,
     createUser,
     updateUser,
     deleteUser,
+    accountUser,
+    authorizationUser,
 };

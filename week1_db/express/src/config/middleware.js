@@ -1,4 +1,5 @@
 const bodyParser = require('body-parser');
+const morgan = require('morgan');
 
 module.exports = {
     init(app) {
@@ -7,6 +8,7 @@ module.exports = {
          */
         app.use(bodyParser.urlencoded({ extended: true }));
         app.use(bodyParser.json());
+        app.use(morgan('combined'));
 
         app.use((req, res, next) => {
             res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS ');
